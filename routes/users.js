@@ -1,11 +1,24 @@
 import express from "express";
-import { getUsers } from "../controllers/users.js";
+import { getUsers,createUser,removeUser,getUser,Museumapi, loginUser} from "../controllers/users.js";
+
+
 
 const router = express.Router();
+
 
 /*default get reqeust path*/
 router.get("/",(req,res) =>{
     getUsers(req,res);
 });
+
+router.post('/login',loginUser);
+router.delete('/users/id:', removeUser);
+router.get('/users/:id', getUser);
+router.post('/users/register', createUser);
+router.get('/museumapi',Museumapi)
+
+
+
+
 
 export default router;

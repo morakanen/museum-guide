@@ -1,7 +1,9 @@
 // Import dotenv and load environment variables
 import dotenv from "dotenv";
-dotenv.config();
-console.log("Password:", process.env.DEV_PASSWORD);
+//dotenv.config({ path: '../.env' });
+dotenv.config()
+console.log(process.env.DEV_USER);
+console.log(process.env.DEV_PASSWORD); // Be careful logging passwords
 
 
 /**
@@ -13,7 +15,7 @@ const development = {
   connection: {
     database: process.env.DEV_DB,
     user: process.env.DEV_USER,
-    password: process.env.DEV_PASSWORD,
+    password: process.env.DEV_PASSWORD || "12345",
     host: process.env.DEV_HOST || "localhost",
     port: process.env.DEV_PORT || 5432,
   },

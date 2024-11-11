@@ -1,0 +1,77 @@
+/* src/pages/ModelPage.css */
+
+.model-page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+}
+
+.nav-bar {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Increase the gap between buttons */
+  padding: 20px; /* Increase padding around the nav bar */
+  background: rgba(0, 0, 0, 0.7); /* Slightly darker background for emphasis */
+  border-radius: 8px;
+  z-index: 1000; /* High z-index to ensure it stays on top */
+}
+
+.nav-bar button {
+  font-size: 1.25rem; /* Increase font size of buttons */
+  padding: 12px 20px; /* Add padding for larger button size */
+  background-color: #333; /* Button background color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-bar button:hover {
+  background-color: #555; /* Slightly lighter color on hover */
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: white;
+  z-index: 1000; /* Ensure loading text is on top as well */
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Lower z-index to stay behind other elements */
+}
+
+.label {
+  font-size: 14px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 4px 8px;
+  border-radius: 4px;
+  pointer-events: none; /* Prevent interaction interference */
+  z-index: 500; /* Ensure labels are above canvas but below nav-bar */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards; /* 1 second fade-in animation */
+}
