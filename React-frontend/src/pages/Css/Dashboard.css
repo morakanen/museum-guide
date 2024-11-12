@@ -4,8 +4,7 @@
   
   /* Main content area with padding-top to avoid overlap with navbar */
   .content {
-    padding-top: 70px; /* Adjust based on navbar height */
-    padding: 20px;
+
     overflow-y: auto;
     height: calc(100vh - 70px); /* Make it scrollable within the viewport */
   }

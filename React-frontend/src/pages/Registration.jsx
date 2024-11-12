@@ -37,7 +37,6 @@ function Registration() {
                 navigate('/login');
               }}
               style={{
-                marginTop: '10px',
                 backgroundColor: 'red',
                 color: 'white',
                 border: 'none',

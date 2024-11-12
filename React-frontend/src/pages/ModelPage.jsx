@@ -4,7 +4,7 @@ import { OrbitControls, useGLTF, Environment, Html } from '@react-three/drei';
 import { useSpring, a } from '@react-spring/three';
 import ErrorBoundary from '../ErrorBoundary'; 
 import labelData from '..//data/labelData'; //changed directory to merge properly
-import './ModelPage.css';
+import './Css/ModelPage.css';
 
 const Model = ({ modelPath, position }) => {
   const { scene } = useGLTF(modelPath, true);
