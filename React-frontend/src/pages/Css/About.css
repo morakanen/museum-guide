@@ -1,45 +1,83 @@
-/* AboutPage.css */
+/* About.css */
 
+/* Container styling for About Page */
 .about-container {
-    padding: 20px;
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
-    background-color: #f4f1e1; /* Light parchment background */
-    color: #3e3b32; /* Dark warm gray for text */
+    padding: 40px;
+    background-color: #ffffff; /* White background for contrast */
+    border: 1px solid #8a7a5e; /* Antique wood color border */
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
     font-family: 'Garamond', serif;
-    border-radius: 8px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow for subtle depth */
-}
-
-.about-container h2 {
-    font-size: 2.2em;
-    color: #3e3b32; /* Dark warm gray for heading */
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); /* Subtle shadow for text depth */
-    border-bottom: 2px solid #8a7a5e; /* Antique wood border below heading */
-    padding-bottom: 10px;
-}
-
-.about-container p {
-    font-size: 1.1em;
+    color: #3e3b32; /* Dark warm gray for text */
     line-height: 1.6;
+}
+
+/* Headings */
+.about-container h2 {
+    font-size: 2rem;
+    color: #3e3b32;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+/* Paragraph styling */
+.about-container p {
+    font-size: 1.1rem;
     margin: 15px 0;
     color: #3e3b32;
 }
 
-.about-container p.bold {
+/* Signature style for the team */
+.about-container p:last-child {
+    font-style: italic;
     font-weight: bold;
+    color: #8a7a5e;
+    margin-top: 30px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
+    font-size: 1rem;
+    background-color: #f4f1e1; /* Light parchment color for background */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #8a7a5e; /* Antique wood color for border */
 }
 
-.about-container a {
-    color: #8a7a5e; /* Antique wood color for links */
-    text-decoration: none;
+thead {
+    background-color: #8a7a5e; /* Antique wood color for header */
+    color: #f4f1e1; /* Light parchment color for text */
+}
+
+thead th {
+    padding: 10px;
     font-weight: bold;
+    border-bottom: 1px solid #6e624f; /* Darker border for separation */
 }
 
-.about-container a:hover {
-    text-decoration: underline;
-    color: #6e624f; /* Darker tone on hover */
+tbody tr:nth-child(odd) {
+    background-color: #ece6d4; /* Soft beige for striped rows */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffffff; /* White for alternate rows */
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #8a7a5e; /* Antique wood color for row borders */
+    color: #3e3b32; /* Dark warm gray for text */
+    text-align: center;
+}
+
+/* Last row styling for current director */
+tbody td:last-child {
+    font-style: italic;
+    font-weight: bold;
 }

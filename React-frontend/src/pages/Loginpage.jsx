@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/userstateSlice';
+import './Css/Loginpage.css';
 
 /** 
 const LoginPage = () => {
@@ -48,6 +49,10 @@ const LoginPage = () => {
 
 
 
+// src/pages/LoginPage.jsx
+
+
+
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -69,10 +74,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleLogin}>
+    <div className="login-container">
+      <form onSubmit={handleLogin} className="login-form">
+        <h2>Login</h2>
+        {error && <p className="error">{error}</p>}
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
         <button type="submit">Login</button>
@@ -82,3 +87,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
