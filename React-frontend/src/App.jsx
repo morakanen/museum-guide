@@ -1,11 +1,12 @@
-
+// import { jwtDecode } from "jwt-decode";
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
 import { Auth0Provider } from '@auth0/auth0-react';
-import { jwtDecode } from "jwt-Decode";
+import { jwtDecode } from "jwt-decode";
 import { loginSuccess } from './store/userstateSlice';
 import { useDispatch } from'react-redux';
 import { useEffect } from'react';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function App() {
     const token = localStorage.getItem('token');
     if (token) {
       const user = jwtDecode(token);
-      dispatch(loginSuccess({ token, user })); // Update Redux store with persisted user info
+      dispatch(loginSuccess({ token, user })); // Updates Redux store with persisted user info
     }
   }, [dispatch]);
   return (
