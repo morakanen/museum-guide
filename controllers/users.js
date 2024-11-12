@@ -24,13 +24,13 @@ const createUser = async (req, res) => {
     console.log(req.body); 
     const { username, email, password } = req.body;
 
-    // Validate that both username and email are provided
+    // Validates that both username and email are provided
     if (!username || !email ||!password) {
         return res.status(400).json({ error: 'Username,email and password are required' });
     }
 
     try {
-        // Check if the user already exists by email
+        // Checks if the user already exists by email
         const existingUser = await getUserByEmail(email);
         if (existingUser) {
             return res.status(400).json({ error: 'User with this email already exists' });

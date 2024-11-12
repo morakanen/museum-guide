@@ -1,24 +1,20 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../store/userstateSlice';
 
+const UserContainer = () => {
+  const { isAuthenticated, user } = useSelector((state) => state.userstate);
+  const dispatch = useDispatch();
 
-const UserContainer = ({ user, login, logout }) => {
+  if (!isAuthenticated) {
+    return <p>You are not logged in.</p>;
+  }
+
   return (
-    <ul className="loginStatus">
-      {user ? (
-        <li>
-          Hi <strong>{user?.username?.toUpperCase()}</strong>!
-          <button onClick={logout} className="btn">
-            Logout
-          </button>
-        </li>
-      ) : (
-        <li>
-          <button onClick={login} className="btn">
-            Please Login
-          </button>
-        </li>
-      )}
-    </ul>
+    <div>
+      <h3>Welcome, {user.username}!</h3>
+      <button onClick={() => dispatch(logout())}>Logout</button>
+    </div>
   );
 };
 
