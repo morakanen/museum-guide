@@ -9,7 +9,7 @@ import './Css/HomePage.css';
 const WelcomeSection = () => (
     <section className="Welcome">
         <img
-            src="https://via.placeholder.com/1200x600?text=Explore+Our+Museum"
+            src="\museum.jpeg"
             alt="Museum Interior"
             className="Welcome-image"
         />

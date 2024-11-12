@@ -5,107 +5,108 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f7f8fa; /* Light gray background */
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  box-sizing: border-box;
+  background-color: #3e3e3e; /* Light parchment */
+  font-family: 'Garamond', serif;
 }
 
 .registration-form {
-  background-color: #ffffff; /* White background for form */
-  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ece6d4; /* Soft beige */
+  padding: 40px;
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for form box */
-  text-align: center;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .registration-form h2 {
-  font-size: 1.8em;
-  color: #333333; /* Darker gray for title */
-  margin-bottom: 20px;
-  font-weight: 600;
-  border-bottom: 2px solid #007acc; /* Thin bottom border for form title */
-  padding-bottom: 10px;
-}
-
-/* Form input fields */
-.registration-form label {
-  display: block;
-  font-size: 1em;
-  color: #666666; /* Medium gray for label text */
-  text-align: left;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  font-weight: 500;
-}
-
-.registration-form input[type="text"],
-.registration-form input[type="email"],
-.registration-form input[type="password"] {
+  font-size: 2.2em;
+  color: #3e3b32; /* Dark warm gray */
+  margin: 0;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #8a7a5e; /* Thin bottom border for form title */
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #cccccc;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 1.1em;
+  color: #3e3b32;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #8a7a5e; /* Antique wood */
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #efeae0; /* Light warm gray */
+  color: #3e3b32;
+  font-family: inherit;
   font-size: 1em;
-  color: #333333; /* Darker gray for input text */
   transition: border-color 0.3s ease;
 }
 
-.registration-form input:focus {
-  border-color: #007acc; /* Blue for focus outline */
-  background-color: #ffffff;
+.form-group input:focus {
+  border-color: #6e624f; /* Darker focus outline */
   outline: none;
 }
 
-.registration-form input:disabled {
-  background-color: #e0e0e0; /* Light gray for disabled fields */
-  cursor: not-allowed;
+.form-group input:disabled {
+  background-color: #d9d2c3; /* Muted stone-like color for disabled */
 }
 
-/* Submit button */
 .register-btn {
   width: 100%;
-  background-color: #007acc; /* Blue for submit button */
-  color: #ffffff; /* White text for contrast */
+  background-color: #8a7a5e; /* Antique wood */
+  color: #f4f1e1;
   padding: 12px 0;
   border: none;
   border-radius: 5px;
+  font-family: inherit;
   font-size: 1.1em;
-  font-weight: 600;
   cursor: pointer;
-  margin-top: 20px;
+  font-weight: bold;
+  margin-top: 15px;
   transition: background-color 0.3s ease;
 }
 
 .register-btn:hover:not(:disabled) {
-  background-color: #005a99; /* Darker blue on hover */
+  background-color: #6e624f; /* Darker wood color */
 }
 
 .register-btn:disabled {
-  background-color: #b3b3b3; /* Muted color for disabled */
+  background-color: #b3a392; /* Faded color for disabled */
   cursor: not-allowed;
 }
 
 /* Toast message styling */
 .Toastify__toast-container {
-  font-family: Arial, sans-serif;
+  font-family: 'Garamond', serif;
 }
 
 .Toastify__toast {
-  background-color: #f7f8fa; /* Light gray for toast */
-  color: #333333; /* Dark gray for toast text */
-  border: 1px solid #cccccc;
+  background-color: #f4f1e1; /* Light parchment for toast */
+  color: #3e3b32;
+  border: 1px solid #8a7a5e;
   border-radius: 5px;
 }
 
 .Toastify__toast--success {
-  border-color: #28a745; /* Green border for success */
+  border-color: #6e8a62; /* Greenish tone for success */
 }
 
 .Toastify__toast--error {
-  border-color: #dc3545; /* Red border for error */
+  border-color: #8a5e5e; /* Reddish tone for errors */
 }

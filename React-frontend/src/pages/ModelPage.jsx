@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Environment, Html } from '@react-three/drei';
 import { useSpring, a } from '@react-spring/three';
 import ErrorBoundary from '../ErrorBoundary'; 
-import labelData from '..//data/labelData'; //changed directory to merge properly
+import labelData from '../data/labelData';
 import './Css/ModelPage.css';
 
 const Model = ({ modelPath, position }) => {
@@ -28,9 +28,9 @@ const Label = ({ position, text, delay }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsFadedIn(true);
-    }, delay); // Delay before fade-in starts
+    }, delay);
 
-    return () => clearTimeout(timer); // Cleanup on unmount
+    return () => clearTimeout(timer);
   }, [delay]);
 
   return (
@@ -46,20 +46,19 @@ const Label = ({ position, text, delay }) => {
 
 const ModelPage = () => {
   const [activeModel, setActiveModel] = useState(null);
-  const [showLabels, setShowLabels] = useState(false); // State to control label visibility
+  const [showLabels, setShowLabels] = useState(false);
 
   const handleSetActiveModel = (model) => {
     setActiveModel(model);
-    setShowLabels(false); // Reset label visibility on model change
+    setShowLabels(false);
   };
 
-  // Delay showing labels by 1 second (1000 ms) after model change
   useEffect(() => {
     if (activeModel !== null) {
       const timer = setTimeout(() => {
         setShowLabels(true);
-      }, 1000); // Adjust delay time here if needed
-      return () => clearTimeout(timer); // Cleanup timer on unmount or activeModel change
+      }, 1000);
+      return () => clearTimeout(timer);
     }
   }, [activeModel]);
 
@@ -76,8 +75,32 @@ const ModelPage = () => {
     <div className="model-page">
       <nav className="nav-bar">
         <button onClick={() => handleSetActiveModel('Model1')}>Model 1</button>
+        {activeModel === 'Model1' && (
+          <ul className="label-list">
+            {labelsForActiveModel.map((label, index) => (
+              <li key={index}>{label.text}</li>
+            ))}
+          </ul>
+        )}
+        
         <button onClick={() => handleSetActiveModel('Model2')}>Model 2</button>
+        {activeModel === 'Model2' && (
+          <ul className="label-list">
+            {labelsForActiveModel.map((label, index) => (
+              <li key={index}>{label.text}</li>
+            ))}
+          </ul>
+        )}
+
         <button onClick={() => handleSetActiveModel('Model3')}>Model 3</button>
+        {activeModel === 'Model3' && (
+          <ul className="label-list">
+            {labelsForActiveModel.map((label, index) => (
+              <li key={index}>{label.text}</li>
+            ))}
+          </ul>
+        )}
+
         <button onClick={() => handleSetActiveModel(null)}>Show All</button>
       </nav>
 
