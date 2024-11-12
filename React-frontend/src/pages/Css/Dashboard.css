@@ -1,30 +1,97 @@
+/* Dashboard.css */
 
-  
-  
-  
-  /* Main content area with padding-top to avoid overlap with navbar */
-  .content {
+.dashboard-container {
+    padding: 20px;
+    background-color: #f4f1e1; /* Light parchment background */
+    color: #3e3b32; /* Dark warm gray for text */
+    font-family: 'Garamond', serif;
+}
 
-    overflow-y: auto;
-    height: calc(100vh - 70px); /* Make it scrollable within the viewport */
-  }
-  
-  /* Results container styling */
-  .results {
+.content h1 {
+    font-size: 2.2em;
+    color: #3e3b32;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+form label {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+form input[type="text"] {
+    padding: 8px;
+    border: 1px solid #8a7a5e;
+    border-radius: 5px;
+    background-color: #efeae0; /* Light warm gray */
+    color: #3e3b32;
+    font-family: inherit;
+    width: 250px;
+}
+
+form button {
+    padding: 8px 15px;
+    background-color: #8a7a5e; /* Antique wood color */
+    color: #f4f1e1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+}
+
+form button:hover {
+    background-color: #6e624f; /* Darker wood color for hover */
+}
+
+/* Results section */
+.results {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  /* Card styling */
-  .card {
-    border: 1px solid #ccc;
-    padding: 10px;
+    justify-content: center;
+    gap: 15px;
+}
+
+.card {
+    background-color: #ece6d4; /* Soft beige */
+    border: 1px solid #8a7a5e;
+    border-radius: 8px;
     width: 200px;
+    padding: 10px;
     text-align: center;
-  }
-  
-  .card-image {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
     width: 100%;
     height: auto;
-  }
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    font-size: 1.2em;
+    color: #3e3b32;
+    margin-bottom: 5px;
+}
+
+.card p {
+    font-size: 0.9em;
+    color: #3e3b32;
+    margin: 0;
+}

@@ -4,7 +4,6 @@ import { registerUser } from '../store/userActions';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import HomepageLayout from './Homepagelayout'; 
 
 
 function Registration() {

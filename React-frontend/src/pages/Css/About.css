@@ -1,0 +1,45 @@
+/* AboutPage.css */
+
+.about-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #f4f1e1; /* Light parchment background */
+    color: #3e3b32; /* Dark warm gray for text */
+    font-family: 'Garamond', serif;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow for subtle depth */
+}
+
+.about-container h2 {
+    font-size: 2.2em;
+    color: #3e3b32; /* Dark warm gray for heading */
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); /* Subtle shadow for text depth */
+    border-bottom: 2px solid #8a7a5e; /* Antique wood border below heading */
+    padding-bottom: 10px;
+}
+
+.about-container p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 15px 0;
+    color: #3e3b32;
+}
+
+.about-container p.bold {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.about-container a {
+    color: #8a7a5e; /* Antique wood color for links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-container a:hover {
+    text-decoration: underline;
+    color: #6e624f; /* Darker tone on hover */
+}
