@@ -5,8 +5,16 @@ const LoadingOverlay = () => {
     return (
         <div className="loading-overlay">
             <div className="loading-animation">
-                <div className="spinner"></div>
-                <p>Redirecting... Please wait while we redirect you to the homepage.</p>
+                {/* Retro Spinner */}
+                <div className="retro-spinner"></div>
+
+                {/* Retro Loading Bar */}
+                <div className="loading-bar-container">
+                    <div className="loading-bar"></div>
+                </div>
+                
+                {/* Flickering Text */}
+                <p className="loading-text">Loading... Please wait</p>
             </div>
         </div>
     );
