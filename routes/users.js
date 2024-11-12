@@ -1,5 +1,5 @@
 import express from "express";
-import { getUsers,createUser,removeUser,getUser,Museumapi, loginUser} from "../controllers/users.js";
+import { getUsers,createUser,removeUser,getUser,Museumapi, loginUser,sendemail} from "../controllers/users.js";
 
 
 
@@ -11,6 +11,7 @@ router.get("/",(req,res) =>{
     getUsers(req,res);
 });
 
+router.post('/newsletter-signup',sendemail)
 router.post('/login',loginUser);
 router.delete('/users/id:', removeUser);
 router.get('/users/:id', getUser);

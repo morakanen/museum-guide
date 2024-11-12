@@ -2,6 +2,7 @@
 
 import React from 'react';
 import "./Css/About.css";
+import NewsletterSignup from '../components/NewsletterSignup';
 
 const DirectorsTable = () => {
   const directors = [
@@ -64,6 +65,7 @@ const AboutPage = () => {
         Thank you for being part of our journey. If you have any questions, feedback, or just want to say hi, feel free to reach out. Happy browsing!
       </p>
       <p>— The Fitzwilliam Museum Team</p>
+      <NewsletterSignup />
     </div>
   );
 };

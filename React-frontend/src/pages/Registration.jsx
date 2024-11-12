@@ -34,6 +34,7 @@ function Registration() {
       email: '',
       password: ''
     },
+    //sets scheme for the username adn password fields
     validationSchema,
     onSubmit: async (values, { setSubmitting, setFieldError }) => {
       setIsSubmitting(true);

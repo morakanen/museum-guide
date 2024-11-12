@@ -2,6 +2,7 @@ import { getAllUsers, addUser, deleteUserByID, getUserById, getUserByEmail, getb
 import axios from "axios";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
 
 
 
@@ -142,4 +143,45 @@ const removeUser = async (req, res) => {
         });
       };
 
-  export { getUsers, createUser, getUser, removeUser, Museumapi,loginUser,authenticateToken };
+      //nodeemailer setup
+      const transporter = nodemailer.createTransport({
+        host: 'smtp.imitate.email',
+        port: 587, // or try 465 if secure is true
+        secure: false, // Use true for port 465 (SSL)
+        auth: {
+            user: "Raq2GMHABU24fgGTIDrSVA", // replace with your provided username
+            pass: "5YtTctgnGxd6CW1J9pr8",  // replace with your provided password
+        },
+        tls: {
+            rejectUnauthorized: false,
+        },
+    });
+
+// Route to handle newsletter signup
+const sendemail = async (req, res) => {
+    const { email } = req.body;
+    console.log(email);
+
+    if (!email) {
+        return res.status(400).json({ message: 'Email is required' });
+    }
+
+    try {
+        // Send a confirmation email to the user
+        await transporter.sendMail({
+            from: 'anything@prvz.imitate.email', // Replace with your email
+            to: email,
+            subject: 'Thank you for signing up!',
+            text: 'Thank you for signing up for our newsletter! We will keep you updated with our latest news and events.',
+            html: '<p>Thank you for signing up for our newsletter! We will keep you updated with our latest news and events.</p>',
+        });
+
+        res.status(200).json({ message: 'Email sent successfully' });
+    } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).json({ message: 'Failed to send email' });
+    }
+};
+      
+
+  export { getUsers, createUser, getUser, removeUser, Museumapi,loginUser,authenticateToken,sendemail }; 
