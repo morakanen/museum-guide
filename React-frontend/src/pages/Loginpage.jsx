@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/userstateSlice';
-
+import { toast } from 'react-toastify';
 /** 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -62,6 +62,9 @@ const LoginPage = () => {
       localStorage.setItem('token', token); // Persist the token
       const user = jwt_decode(token); // Decode to get user info
       dispatch(loginSuccess({ token, user })); // Update Redux store with user info
+      toast.success("Login successful!", {
+        onClose: () => navigate('/homepage')
+      });
       setError('');
     } catch (err) {
       setError('Invalid username or password');
@@ -78,6 +81,7 @@ const LoginPage = () => {
         <button type="submit">Login</button>
       </form>
     </div>
+    
   );
 };
 
