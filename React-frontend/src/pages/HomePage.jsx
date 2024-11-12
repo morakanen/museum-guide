@@ -70,7 +70,7 @@ const ModelPreview = () => {
 
 // Spinning model component with downward angle and zoomed in
 const SpinningModel = () => {
-  const { scene } = useGLTF('/models/first.glb');
+  const { scene } = useGLTF('/models/fitzmuseumall.glb');
   const modelRef = useRef();
 
   // Rotate the model continuously with a downward angle
