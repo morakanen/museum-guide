@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
-import './HomePage.css';
+import './Css/HomePage.css';
 
 const WelcomeSection = () => (
     <section className="Welcome">

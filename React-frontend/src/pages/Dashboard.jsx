@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchResults } from '../store/searchSlice';
 import ResultCard from '../components/ResultCard';
 import axios from 'axios';
-import "./Dashboard.css"; // Add a CSS file for styling
+import "./Css/Dashboard.css"; // Add a CSS file for styling
 
 const Dashboard = () => {
   const [query, setQuery] = useState("");

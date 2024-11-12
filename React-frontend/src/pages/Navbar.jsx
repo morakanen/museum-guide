@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate,NavLink } from 'react-router-dom';
 import{ useAuth0 } from '@auth0/auth0-react';
-import './Navbar.css';
+//import './Navbar.css';
 import UserContainer from '../components/UserContainer';
 import { useSelector, useDispatch } from'react-redux';
 
@@ -24,7 +24,7 @@ const Navbar = () => {
         <li><Link to="/dashboard">Dashboard</Link></li>
         <li><Link to="/registration">Registration</Link></li>
         <li><Link to="/AboutPage">About</Link></li>
-        <li><Link to="/ModelPage">Modelpage</Link></li>
+        <li><Link to="/ModelPage">Model page</Link></li>
         {isAuthenticated ? (
         <div>
           <span>Welcome, {user.name}</span>

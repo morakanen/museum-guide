@@ -19,7 +19,7 @@ const Header = () => {
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/registration">Registration</Link>
         <Link to="/AboutPage">About</Link>
-        <Link to="/ModelPage">Modelpage</Link>
+        <Link to="/ModelPage">Model           page</Link>
         {isAuthenticated ? (
         <div>
           <span>Welcome, {user.name}</span>
