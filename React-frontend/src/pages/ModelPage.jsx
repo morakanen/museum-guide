@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Environment, Html } from '@react-three/drei';
 import { useSpring, a } from '@react-spring/three';
 import ErrorBoundary from '../ErrorBoundary'; 
-import labelData from '..//data/labelData'; //changed directory to merge properly
+import labelData from '../data/labelData';
 import './Css/ModelPage.css';
 
 const Model = ({ modelPath, position }) => {
@@ -22,44 +22,55 @@ const AnimatedModel = ({ modelPath, isActive, defaultPosition, direction }) => {
   return <a.group position={position}><Model modelPath={modelPath} /></a.group>;
 };
 
-const Label = ({ position, text, delay }) => {
+const Label = ({ position, text, delay, isActive }) => {
   const [isFadedIn, setIsFadedIn] = useState(false);
+  const firstNumber = text.split(" ")[0];
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsFadedIn(true);
-    }, delay); // Delay before fade-in starts
-
-    return () => clearTimeout(timer); // Cleanup on unmount
+    }, delay);
+    return () => clearTimeout(timer);
   }, [delay]);
 
   return (
     <Html
       position={position}
-      className={isFadedIn ? 'fade-in' : ''}
-      style={{ backgroundColor: 'white', padding: '4px', borderRadius: '4px', opacity: 0 }}
+      className={`label ${isFadedIn ? 'fade-in' : ''} ${isActive ? 'active-label' : ''}`}
+      style={{
+        backgroundColor: isActive ? 'yellow' : 'white',
+        padding: '4px',
+        borderRadius: '4px',
+        opacity: 0,
+      }}
     >
-      {text}
+      <span className="label-text">{firstNumber}</span>
+      <span className="full-text">{text}</span>
     </Html>
   );
 };
 
 const ModelPage = () => {
   const [activeModel, setActiveModel] = useState(null);
-  const [showLabels, setShowLabels] = useState(false); // State to control label visibility
+  const [showLabels, setShowLabels] = useState(false);
+  const [activeLabel, setActiveLabel] = useState(null);
 
   const handleSetActiveModel = (model) => {
     setActiveModel(model);
-    setShowLabels(false); // Reset label visibility on model change
+    setShowLabels(false);
+    setActiveLabel(null);
   };
 
-  // Delay showing labels by 1 second (1000 ms) after model change
+  const handleSetActiveLabel = (labelText) => {
+    setActiveLabel(labelText);
+  };
+
   useEffect(() => {
     if (activeModel !== null) {
       const timer = setTimeout(() => {
         setShowLabels(true);
-      }, 1000); // Adjust delay time here if needed
-      return () => clearTimeout(timer); // Cleanup timer on unmount or activeModel change
+      }, 1000);
+      return () => clearTimeout(timer);
     }
   }, [activeModel]);
 
@@ -75,9 +86,51 @@ const ModelPage = () => {
   return (
     <div className="model-page">
       <nav className="nav-bar">
-        <button onClick={() => handleSetActiveModel('Model1')}>Model 1</button>
-        <button onClick={() => handleSetActiveModel('Model2')}>Model 2</button>
-        <button onClick={() => handleSetActiveModel('Model3')}>Model 3</button>
+        <button onClick={() => handleSetActiveModel('Model3')}>First Floor</button>
+        {activeModel === 'Model3' && (
+          <ul className="label-list">
+            {labelsForActiveModel.map((label, index) => (
+              <li
+                key={index}
+                onClick={() => handleSetActiveLabel(label.text)}
+                className="nav-label"
+              >
+                {label.text}
+              </li>
+            ))}
+          </ul>
+        )}
+        
+        <button onClick={() => handleSetActiveModel('Model2')}>Ground Floor</button>
+        {activeModel === 'Model2' && (
+          <ul className="label-list">
+            {labelsForActiveModel.map((label, index) => (
+              <li
+                key={index}
+                onClick={() => handleSetActiveLabel(label.text)}
+                className="nav-label"
+              >
+                {label.text}
+              </li>
+            ))}
+          </ul>
+        )}
+        
+        <button onClick={() => handleSetActiveModel('Model1')}>Lower Ground Floor</button>
+        {activeModel === 'Model1' && (
+          <ul className="label-list">
+            {labelsForActiveModel.map((label, index) => (
+              <li
+                key={index}
+                onClick={() => handleSetActiveLabel(label.text)}
+                className="nav-label"
+              >
+                {label.text}
+              </li>
+            ))}
+          </ul>
+        )}
+
         <button onClick={() => handleSetActiveModel(null)}>Show All</button>
       </nav>
 
@@ -93,8 +146,15 @@ const ModelPage = () => {
             <AnimatedModel modelPath="/models/ground.glb" isActive={activeModel === 'Model2' || activeModel === null} defaultPosition={[0, 0, 0]} direction={getDirection('Model2')} />
             <AnimatedModel modelPath="/models/first.glb" isActive={activeModel === 'Model3' || activeModel === null} defaultPosition={[0, 0, 0]} direction={getDirection('Model3')} />
 
+            {/* Roof Model - Moves up when a model is active, visible only when all models are shown */}
+            <AnimatedModel modelPath="/models/Roof.glb" 
+              isActive={activeModel === null} 
+              defaultPosition={[0, activeModel === null ? 0 : 10, 0]} // Moves up when any model button is pressed
+              direction="up"
+            />
+
             {showLabels && labelsForActiveModel.map((label, index) => (
-              <Label key={index} position={label.position} text={label.text} />
+              <Label key={index} position={label.position} text={label.text} isActive={label.text === activeLabel} />
             ))}
 
             <OrbitControls />

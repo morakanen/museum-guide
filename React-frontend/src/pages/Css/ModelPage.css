@@ -1,65 +1,145 @@
-/* src/pages/ModelPage.css */
+/* ModelPage.css */
 
-.model-page {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  display: flex;
+/* Remove all default margins and paddings on the body and html */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
+.page { 
+  overflow: hidden; /* Prevent scrolling */
+}
 
+/* Fullscreen Canvas */
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #2c2a29; /* Dark background for the canvas */
+  z-index: 1; /* Behind other elements */
+}
+
+/* Main Page Layout */
+.model-page {
+  display: flex;
+  height: 100vh;
+  font-family: 'Garamond', serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* Left-Side Nav Bar */
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background-color: rgba(62, 59, 50, 0.8); /* Dark warm gray with 80% opacity */
+  position: fixed;
+  top: 50%; /* Center vertically */
+  left: 20px; /* Offset from the left edge of the screen */
+  transform: translateY(-50%); /* Center vertically using transform */
+  width: 300px; /* Adjust width as needed */
+  height: 70%;
+  border-radius: 5px;
+  box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Above the canvas */
+  align-items: center;
+  color: #f4f1e1;
+}
 
 .nav-bar button {
-  font-size: 1.25rem; /* Increase font size of buttons */
-  padding: 12px 20px; /* Add padding for larger button size */
-  background-color: #333; /* Button background color */
-  color: #fff;
+  background-color: #8a7a5e; /* Antique wood color */
+  color: #f4f1e1; /* Light parchment text for readability */
   border: none;
+  padding: 8px 15px;
+  font-size: 1em;
+  font-family: inherit;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%; /* Make buttons fill width of sidebar */
+  text-align: center;
 }
 
 .nav-bar button:hover {
-  background-color: #555; /* Slightly lighter color on hover */
+  background-color: #6e624f; /* Darker wood color */
 }
 
+/* Loading Message Styling */
 .loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
-  color: white;
-  z-index: 1000; /* Ensure loading text is on top as well */
+  font-size: 1.5em;
+  color: #3e3b32;
+  padding: 20px;
+  background-color: #ece6d4; /* Soft beige */
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  z-index: 10;
 }
 
-.canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0; /* Lower z-index to stay behind other elements */
-}
-
-.label {
-  font-size: 14px;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 4px 8px;
-  border-radius: 4px;
-  pointer-events: none; /* Prevent interaction interference */
-  z-index: 500; /* Ensure labels are above canvas but below nav-bar */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
+/* Label Styling with Fade-In Effect */
 .fade-in {
-  animation: fadeIn 1s ease forwards; /* 1 second fade-in animation */
+  opacity: 1 !important;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Label in the 3D Model (removes pointer cursor on hover) */
+.label {
+  position: relative;
+  display: inline-block;
+  cursor: default; /* Prevent pointer cursor on model labels */
+  transition: transform 0.2s ease-in-out;
+}
+
+.label:hover {
+  transform: scale(1.1); /* Slightly enlarges on hover */
+}
+
+.label-text {
+  display: inline-block;
+}
+
+.full-text {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.518);
+  padding: 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.label:hover .full-text {
+  display: inline-block;
+}
+
+.active-label {
+  background-color: #ffe786 !IMPORTANT; /* Soft yellow highlight for active label */
+}
+
+/* Styling for nav-bar labels to make them more clickable */
+.nav-label {
+  font-size: 16px;
+  padding: 2px;
+  margin: 2px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  background-color: rgba(138, 122, 94, 0.2); /* Lighter, more transparent antique wood */
+  color: #ece6d4; /* Slightly lighter text color for a softer look */
+}
+
+.nav-label:hover {
+  background-color: rgba(138, 122, 94, 0.4); /* Darken slightly on hover */
+  color: #ece6d4; /* Consistent light beige text on hover */
+  border-color: rgba(236, 230, 212, 0.2); /* Subtle border on hover */
 }

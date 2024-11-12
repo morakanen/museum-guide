@@ -3,13 +3,15 @@
 import React, { useState, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
+import labelData from '../data/labelData';
+import { Link } from 'react-router-dom';
 
 import './Css/HomePage.css';
 
 const WelcomeSection = () => (
     <section className="Welcome">
         <img
-            src="https://via.placeholder.com/1200x600?text=Explore+Our+Museum"
+            src="\museum.jpeg"
             alt="Museum Interior"
             className="Welcome-image"
         />
@@ -29,60 +31,72 @@ const IntroSection = () => (
 
 
 const ModelPreview = () => {
-  return (
+    // Filter label data by model ID
+    const labelsByModel = {
+      Model1: labelData.filter(label => label.modelId === 'Model1'),
+      Model2: labelData.filter(label => label.modelId === 'Model2'),
+      Model3: labelData.filter(label => label.modelId === 'Model3'),
+    };
+  
+    return (
       <section className="model-preview">
-          <h2>Explore Our Exhibit</h2>
-          <div className="model-content">
-              {/* Model preview box */}
-              <div className="model-box">
-                  <Canvas camera={{ position: [0, 5, 5], fov: 45 }}>
-                      <ambientLight intensity={0.5} />
-                      <directionalLight position={[5, 5, 5]} />
-                      <SpinningModel />
-                  </Canvas>
-              </div>
-
-              {/* Dropdown options */}
-              <div className="dropdown-section">
-                  <label htmlFor="model-options" className="dropdown-label">
-                      Choose an exhibit to view:
-                  </label>
-                  <select
-                      id="model-options"
-                      className="model-dropdown"
-                      defaultValue="Select an option"
-                  >
-                      <option value="Select an option" disabled>
-                          Select an option
-                      </option>
-                      <option value="Ancient Sculpture">Ancient Sculpture</option>
-                      <option value="Modern Art Piece">Modern Art Piece</option>
-                      <option value="Historical Artifact">Historical Artifact</option>
-                  </select>
-                  <button onClick={() => window.location.href = '/3d-exhibit'} className="view-3d-btn">
-                      View Full 3D Exhibit
-                  </button>
-              </div>
+        <h2>Explore Our Exhibit</h2>
+        <div className="model-content">
+          {/* Model preview box */}
+          <div className="model-box">
+            <Canvas camera={{ position: [0, 2, 5], fov: 45 }}>
+              <ambientLight intensity={0.4} />
+              <directionalLight position={[5, 5, 5]} />
+              <SpinningModel />
+            </Canvas>
+            <Link to="/modelPage">
+                <button className="view-3d-btn">View Model</button>
+            </Link>
           </div>
+  
+          {/* Lists for each model */}
+          <div className="model-list-section">
+            <ModelList title="Model 1" labels={labelsByModel.Model1} />
+            <ModelList title="Model 2" labels={labelsByModel.Model2} />
+            <ModelList title="Model 3" labels={labelsByModel.Model3} />
+          </div>
+        </div>
       </section>
-  );
-};
+    );
+  };
+  
 
-// Spinning model component with downward angle and zoomed in
+// Separate component to render each list of model labels
+const ModelList = ({ title, labels }) => (
+  <div className="model-list">
+    <h3>{title}</h3>
+    <ul>
+      {labels.map((label, index) => (
+        <li key={index}>{label.text}</li>
+      ))}
+    </ul>
+  </div>
+);
+
+// Spinning model component
 const SpinningModel = () => {
-  const { scene } = useGLTF('/models/fitzmuseumall.glb');
-  const modelRef = useRef();
-
-  // Rotate the model continuously with a downward angle
-  useFrame(() => {
+    const { scene } = useGLTF('/models/fitzmuseumall.glb');
+    const modelRef = useRef();
+    
+  
+    // Rotate the model continuously on the Y-axis
+    useFrame(() => {
       if (modelRef.current) {
-          modelRef.current.rotation.y += 0.01; // Rotate around the Y-axis
-          modelRef.current.rotation.x = -0.3; // Tilt slightly downward
+        modelRef.current.rotation.y += 0.005; // Adjust rotation speed as needed
       }
-  });
+    });
+  
+    return <primitive object={scene} ref={modelRef} scale={2.0} position={[-1, -1, -2]}/>;
+  };
+  
 
-  return <primitive object={scene} ref={modelRef} scale={2.5} />;
-};
+
+
 
 const collections = [
     { link: "/collections/ancient-art", img: "https://via.placeholder.com/200?text=Ancient+Art", title: "Ancient Art" },
