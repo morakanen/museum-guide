@@ -2,15 +2,26 @@ import "./Css/Header.css"
 import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import{ useAuth0 } from '@auth0/auth0-react';
+import UserContainer from "../components/UserContainer";
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../store/userstateSlice';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAuthenticated, user, logout } = useAuth0();//when i was trying to implement auth0,future versions
+  const dispatch = useDispatch();
 
-  
+  // Accessing Redux state to check if user is authenticated and to get username
+  const isAuthenticated = useSelector((state) => state.userstate.isAuthenticated);
+  const username = useSelector((state) => state.userstate.user?.username); // Assuming `username` is in `user`
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <header style={headerStyles}>
       <h1 style={titleStyles}>Fitzwilliam Museum</h1>
@@ -19,26 +30,28 @@ const Header = () => {
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/registration">Registration</Link>
         <Link to="/AboutPage">About</Link>
-        <Link to="/ModelPage">Model           page</Link>
+        <Link to="/ModelPage">Model</Link>
+        
+        {/* Display username if authenticated */}
         {isAuthenticated ? (
-        <div>
-          <span>Welcome, {user.name}</span>
-          <button onClick={() => logout({ returnTo: window.location.origin })}>
-            Logout
-          </button>
+          <div>
+            <UserContainer /> {/* Ensure `UserContainer` uses `username` */}
+            <span>{username}</span> {/* Show username */}
+          </div>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
+        
+        <div className="navbar-toggle" onClick={toggleMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
         </div>
-      ) : (
-        <a href="/login">Login</a>
-      )}
-      <div className="navbar-toggle" onClick={toggleMenu}>
-      <span className="bar"></span>
-      <span className="bar"></span>
-      <span className="bar"></span>
-    </div>
       </nav>
     </header>
   );
 };
+
 
 const headerStyles = {
   padding: '1rem',
